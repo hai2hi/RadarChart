@@ -100,12 +100,12 @@ export const RadarInput: React.FC<RadarInputProps> = ({ size = DEFAULT_CHART_SIZ
         break
       case 'rpg':
         setStats([
-          { id: 'rpg-1', label: 'ATK', value: 9 },
-          { id: 'rpg-2', label: 'DEF', value: 6 },
-          { id: 'rpg-3', label: 'SPD', value: 8 },
-          { id: 'rpg-4', label: 'MAG', value: 5 },
-          { id: 'rpg-5', label: 'HP', value: 9 },
-          { id: 'rpg-6', label: 'CRT', value: 7 },
+          { id: 'rpg-1', label: 'ATK', value: Math.floor(Math.random() * (10 - 1 + 1) + 1) },
+          { id: 'rpg-2', label: 'DEF', value: Math.floor(Math.random() * (10 - 1 + 1) + 1) },
+          { id: 'rpg-3', label: 'SPD', value: Math.floor(Math.random() * (10 - 1 + 1) + 1) },
+          { id: 'rpg-4', label: 'MAG', value: Math.floor(Math.random() * (10 - 1 + 1) + 1) },
+          { id: 'rpg-5', label: 'HP', value: Math.floor(Math.random() * (10 - 1 + 1) + 1) },
+          { id: 'rpg-6', label: 'CRT', value: Math.floor(Math.random() * (10 - 1 + 1) + 1) },
         ])
         setSelectedStatIndex(null)
         break
