@@ -1,0 +1,183 @@
+@use 'palettes' as *;
+
+.radar-chart {
+  &__wrapper {
+    position: relative;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__svg {
+    width: 100%;
+    max-width: var(--radar-chart-max-width, 550px);
+    height: auto;
+    overflow: visible;
+    touch-action: none;
+  }
+
+  // Background subtle circle
+  &__bg-circle {
+    fill: rgba(19, 23, 34, 0.5);
+    stroke: var(--border-surface, #2b3246);
+    stroke-width: 1;
+  }
+
+  // Concentric Grid Rings - High Visibility
+  &__grid-sub {
+    fill: none;
+    stroke: var(--grid-sub-ring, rgba(100, 116, 139, 0.45));
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+  }
+
+  &__grid-primary {
+    fill: none;
+    stroke: var(--grid-primary-ring, #475569);
+    stroke-width: 1.2;
+
+    &--outer {
+      fill: rgba(24, 28, 40, 0.4);
+      stroke: var(--grid-outer-ring, #64748b);
+      stroke-width: 1.5;
+    }
+  }
+
+  &__level-number {
+    fill: var(--grid-level-text, #94a3b8);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 10px;
+    font-weight: 500;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // Radial Axis Spokes
+  &__spoke {
+    stroke: var(--grid-spoke, #334155);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+    transition: stroke 0.15s ease;
+
+    &--selected {
+      stroke: var(--accent, #3b82f6);
+      stroke-width: 1.5;
+      stroke-dasharray: none;
+    }
+  }
+
+  &__center-dot {
+    fill: var(--text-dim, #5a667f);
+  }
+
+  // Data Polygon - Simplistic Flat Translucent Color (No heavy gradient)
+  &__polygon {
+    fill: var(--radar-fill, rgba(59, 130, 246, 0.28));
+    stroke: var(--radar-stroke, #3b82f6);
+    stroke-width: 2.25;
+    stroke-linejoin: round;
+    transition: fill 0.15s ease;
+
+    &:hover {
+      fill: rgba(59, 130, 246, 0.35);
+    }
+  }
+
+  // Vertex Drag Handles
+  &__handle {
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &-halo {
+      fill: none;
+      stroke: var(--accent, #3b82f6);
+      stroke-width: 1.5;
+      opacity: 0.5;
+      pointer-events: none;
+      animation: radar-halo-pulse 2s infinite ease-in-out;
+
+      &--dragging {
+        animation: none;
+        opacity: 1;
+        stroke-width: 2;
+      }
+    }
+
+    &-dot {
+      fill: var(--radar-handle-fill, #3b82f6);
+      stroke: var(--radar-handle-border, #ffffff);
+      stroke-width: 2;
+      pointer-events: none;
+    }
+
+    &-pip {
+      fill: #ffffff;
+      pointer-events: none;
+    }
+
+    &-hitarea {
+      fill: transparent;
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+
+    // Value Tooltip Badge
+    &-tooltip-box {
+      fill: var(--bg-surface, #131722);
+      stroke: var(--border-card-selected, #3b82f6);
+      stroke-width: 1;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6));
+    }
+
+    &-tooltip-text {
+      fill: var(--text-primary, #ffffff);
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+  }
+
+  // Perimeter Corner Labels
+  &__label {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    user-select: none;
+    fill: var(--text-secondary, #cbd5e1);
+    transition: fill 0.15s ease, font-weight 0.15s ease;
+
+    &:hover {
+      fill: var(--text-primary, #ffffff);
+    }
+
+    &--active {
+      fill: var(--accent, #3b82f6);
+      font-weight: 700;
+    }
+  }
+}
+
+@keyframes radar-halo-pulse {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    stroke-width: 1.5;
+  }
+
+  50% {
+    opacity: 0.9;
+    stroke-width: 3;
+  }
+}

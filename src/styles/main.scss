@@ -1,0 +1,24 @@
+// =============================================================================
+// MAIN STYLESHEET ENTRY POINT
+// =============================================================================
+
+@use 'palettes' as *;
+@use 'radar-chart';
+@use 'stat-card';
+@use 'radar-input';
+@use 'app';
+
+// Base document reset and body styling
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app, #0b0d13);
+  color: var(--text-primary, #ffffff);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

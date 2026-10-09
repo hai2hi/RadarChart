@@ -1,0 +1,129 @@
+// =============================================================================
+// COLOR PALETTES
+// =============================================================================
+@use 'sass:map';
+
+// -----------------------------------------------------------------------------
+// 1. SAVED PREVIOUS PALETTE (Legacy Neon/Glowing Theme)
+// Preserved for reference and rollback
+// -----------------------------------------------------------------------------
+$legacy-theme: (
+  bg-app: #080a0f,
+  bg-surface: #0d1017,
+  bg-card: rgba(15, 23, 42, 0.6),
+  border-main: rgba(30, 41, 59, 0.8),
+  border-subtle: #1e293b,
+  text-heading: #ffffff,
+  text-body: #94a3b8,
+  text-muted: #64748b,
+  radar-gradient-start: #3b82f6,
+  radar-gradient-mid: #2563eb,
+  radar-gradient-end: #1d4ed8,
+  radar-stroke: #38bdf8,
+  radar-handle: #38bdf8,
+  radar-handle-glow: #60a5fa,
+  grid-subtle: rgba(148, 163, 184, 0.08),
+  grid-primary: rgba(148, 163, 184, 0.16),
+  grid-outer: rgba(148, 163, 184, 0.35),
+  grid-spoke: rgba(148, 163, 184, 0.20),
+);
+
+// -----------------------------------------------------------------------------
+// 2. NEW SIMPLISTIC & HIGH-CONTRAST THEME
+// Clean, minimal, high-contrast, flat translucent colors, sharp visible grid
+// -----------------------------------------------------------------------------
+$theme: (
+  // Backgrounds
+  bg-app: #0b0d13,
+  bg-surface: #131722,
+  bg-card: #181c28,
+  bg-card-hover: #1e2333,
+  bg-card-selected: #1a2030,
+  bg-button: #1a1e2b,
+  bg-button-hover: #242a3c,
+  bg-button-active: #151823,
+
+  // Borders (High Contrast)
+  border-surface: #2b3246,
+  border-card: #2e3549,
+  border-card-hover: #454f6b,
+  border-card-selected: #3b82f6,
+  border-button: #363e56,
+  border-button-hover: #4d587b,
+
+  // Typography
+  text-primary: #ffffff,
+  text-secondary: #cbd5e1,
+  text-muted: #8492a6,
+  text-dim: #5a667f,
+
+  // Radar Chart Simplistic Colors (No messy gradients, flat crisp translucency)
+  radar-fill: rgba(59, 130, 246, 0.28),
+  radar-fill-hover: rgba(59, 130, 246, 0.38),
+  radar-stroke: #3b82f6,
+  radar-stroke-width: 2.25px,
+  radar-handle-fill: #3b82f6,
+  radar-handle-border: #ffffff,
+  radar-handle-ring: rgba(59, 130, 246, 0.5),
+
+  // Grid Rings (Significantly more visible and sharp)
+  grid-outer-ring: #64748b,           // Outer boundary (1.5px solid)
+  grid-primary-ring: #475569,         // Levels 2, 4, 6, 8 (1.2px solid)
+  grid-sub-ring: rgba(100, 116, 139, 0.45), // Levels 1, 3, 5, 7, 9 (1px dashed)
+  grid-spoke: #334155,                // Radial spokes
+  grid-spoke-active: #60a5fa,
+  grid-level-text: #94a3b8,           // Axis level numbers
+
+  // Accent & Controls
+  accent: #3b82f6,
+  accent-hover: #60a5fa,
+  accent-badge-bg: #1e2d4d,
+  accent-badge-border: #2e4a7a,
+  slider-track: #232839,
+  slider-fill: #3b82f6,
+  slider-thumb: #ffffff,
+  slider-thumb-border: #3b82f6,
+);
+
+// Map to CSS Variables for flexible runtime theming
+:root {
+  --bg-app: #{map.get($theme, bg-app)};
+  --bg-surface: #{map.get($theme, bg-surface)};
+  --bg-card: #{map.get($theme, bg-card)};
+  --bg-card-hover: #{map.get($theme, bg-card-hover)};
+  --bg-card-selected: #{map.get($theme, bg-card-selected)};
+  --bg-button: #{map.get($theme, bg-button)};
+  --bg-button-hover: #{map.get($theme, bg-button-hover)};
+  --bg-button-active: #{map.get($theme, bg-button-active)};
+
+  --border-surface: #{map.get($theme, border-surface)};
+  --border-card: #{map.get($theme, border-card)};
+  --border-card-hover: #{map.get($theme, border-card-hover)};
+  --border-card-selected: #{map.get($theme, border-card-selected)};
+  --border-button: #{map.get($theme, border-button)};
+  --border-button-hover: #{map.get($theme, border-button-hover)};
+
+  --text-primary: #{map.get($theme, text-primary)};
+  --text-secondary: #{map.get($theme, text-secondary)};
+  --text-muted: #{map.get($theme, text-muted)};
+  --text-dim: #{map.get($theme, text-dim)};
+
+  --radar-fill: #{map.get($theme, radar-fill)};
+  --radar-stroke: #{map.get($theme, radar-stroke)};
+  --radar-handle-fill: #{map.get($theme, radar-handle-fill)};
+  --radar-handle-border: #{map.get($theme, radar-handle-border)};
+
+  --grid-outer-ring: #{map.get($theme, grid-outer-ring)};
+  --grid-primary-ring: #{map.get($theme, grid-primary-ring)};
+  --grid-sub-ring: #{map.get($theme, grid-sub-ring)};
+  --grid-spoke: #{map.get($theme, grid-spoke)};
+  --grid-level-text: #{map.get($theme, grid-level-text)};
+
+  --accent: #{map.get($theme, accent)};
+  --accent-badge-bg: #{map.get($theme, accent-badge-bg)};
+  --accent-badge-border: #{map.get($theme, accent-badge-border)};
+  --slider-track: #{map.get($theme, slider-track)};
+  --slider-fill: #{map.get($theme, slider-fill)};
+  --slider-thumb: #{map.get($theme, slider-thumb)};
+  --slider-thumb-border: #{map.get($theme, slider-thumb-border)};
+}
